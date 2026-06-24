@@ -1,0 +1,9 @@
+{
+  "name": "ships",
+  "version": "0.1.0",
+  "description": "Build a crew of agents and sail with them. You are the captain. Your crew remember you, grow with you, and have your back.",
+  "author": {
+    "name": "Captain"
+  },
+  "keywords": ["crew", "agents", "rpg", "progression", "first-mate"]
+}

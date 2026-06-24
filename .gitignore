@@ -1,0 +1,23 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs / temp
+*.log
+*.tmp
+tmp/
+scratch/
+
+# Local crew state lives in ~/.ships (per-user, outside the repo).
+# If anyone ever drops a local copy in-tree, don't commit it.
+.ships/

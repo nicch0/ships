@@ -1,0 +1,13 @@
+{
+  "name": "ships",
+  "owner": {
+    "name": "Captain"
+  },
+  "plugins": [
+    {
+      "name": "ships",
+      "source": "./",
+      "description": "Build a crew of agents and sail with them. You are the captain."
+    }
+  ]
+}
