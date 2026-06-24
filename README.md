@@ -15,8 +15,11 @@ Ships is a productivity tool wearing a game's skin. The crew earn their keep by 
 
 ## Install
 
+Clone the repo, then add it as a plugin marketplace:
+
 ```
-/plugin marketplace add /Users/niccho/dev/ships
+git clone https://github.com/nicch0/ships.git
+/plugin marketplace add ./ships
 /plugin install ships@ships
 ```
 
