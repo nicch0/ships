@@ -38,6 +38,7 @@ Recruit and name your First Mate, choose their voice and bent. They're written t
 | `/ships:helm <name>` | Put a crewmate at the wheel for this session. |
 | `/ships:muster` | See the crew, and who's currently helming. |
 | `/ships:recruit` | Bring a new standing crewmate aboard. |
+| `/ships:autohelm [on\|off]` | Auto-resume your last crewmate at session start, or stay neutral (default: off). |
 
 ## How it works
 

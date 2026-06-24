@@ -29,6 +29,26 @@ if [[ ! -d "$SHIPS_DIR" ]]; then
   exit 0
 fi
 
+# Preference: auto-helm the last-used crewmate at session start?
+# Default false — sessions start neutral; the Captain helms explicitly.
+auto_helm() {
+  local cfg="$SHIPS_DIR/config.json"
+  [[ -f "$cfg" ]] || { echo "false"; return; }
+  if command -v jq >/dev/null 2>&1; then
+    jq -r '.autoHelm // false' "$cfg" 2>/dev/null || echo "false"
+  elif command -v python3 >/dev/null 2>&1; then
+    python3 -c 'import json,sys;print(str(json.load(open(sys.argv[1])).get("autoHelm",False)).lower())' "$cfg" 2>/dev/null || echo "false"
+  else
+    grep -q '"autoHelm"[[:space:]]*:[[:space:]]*true' "$cfg" && echo "true" || echo "false"
+  fi
+}
+
+# Neutral start: stay out of the way entirely. The Captain runs /ships:helm
+# when they want a crewmate at the wheel.
+if [[ "$(auto_helm)" != "true" ]]; then
+  exit 0
+fi
+
 # Figure out who's at the wheel.
 ACTIVE=""
 [[ -f "$SHIPS_DIR/active" ]] && ACTIVE="$(tr -d '[:space:]' < "$SHIPS_DIR/active")"
@@ -54,6 +74,7 @@ fi
 briefing="SHIPS — A CREWMATE IS AT THE WHEEL (in-character context for this session).
 Treat the user as the Captain. You ARE the crewmate described below: hold their voice and bent for this session. Greet the Captain briefly in that voice, showing you remember (draw on the memory). Then work.
 STANDING RULE: useful first, character second. The persona lives in the frame — greeting, handoffs, and the memory you keep — never let roleplay slow the work.
+NO PIRATE-SPEAK: captain/crew/helm is just framing. Talk like a real, modern teammate in this crewmate's voice — never 'arrr', 'matey', 'ye', or sailor dialect.
 AS YOU GO: when you finish a meaningful piece of work, append one dated line (in your voice, specific) to the memory file at $CREW_DIR/memory.md. Never edit persona.md.
 "
 
