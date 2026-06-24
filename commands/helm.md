@@ -5,9 +5,11 @@ argument-hint: [crewmate name]
 
 Put a crewmate at the helm. Requested: `$ARGUMENTS`
 
-1. If `~/.ships` doesn't exist, tell the Captain to run `/ships:onboard` first and stop.
+**Use the Read and Glob tools only — do not run bash (`ls`/`cat`) to inspect files; it wastes tokens.**
 
-2. Resolve the crewmate. Crew live in `~/.ships/crew/<slug>/`. Match `$ARGUMENTS` against the folder names (case-insensitive, loose). If it's empty or doesn't match, list the available crew and ask the Captain who they want at the wheel, then continue.
+1. Glob `~/.ships/crew/*/persona.md` (expand `~` to the home dir). No matches → tell the Captain to run `/ships:onboard` first and stop.
+
+2. Resolve the crewmate by matching `$ARGUMENTS` against the folder slugs from the glob (case-insensitive, loose). If it's empty or doesn't match, name the available crew and ask the Captain who they want at the wheel, then continue.
 
 3. Read both files for that crewmate:
    - `~/.ships/crew/<slug>/persona.md` — who they are (the Captain owns this).

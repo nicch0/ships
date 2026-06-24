@@ -7,11 +7,13 @@ Run the **recruit** ritual — add a crewmate to the ship. The Captain's note on
 
 Ships keeps a **standing crew** — One Piece rules, loyalty over mercenaries. You recruit because you've felt the gap, not to grind a number. There are no rank gates.
 
+**Use the Read and Glob tools to inspect state — don't shell out to bash for reading files.**
+
 1. If `~/.ships` doesn't exist, tell the Captain to run `/ships:onboard` first and stop.
 
 2. Work out the gap. If `$ARGUMENTS` says what they need (e.g. "someone to scout unfamiliar code", "a reviewer", "fast implementation"), shape the new crewmate around it. If it's empty, ask the Captain in one line what their current crew keeps falling short on.
 
-3. Read the existing crew's `persona.md` files first so the new voice stands apart — no two crewmates should sound alike. **No pirate-speak** — every crewmate talks like a real modern colleague; the nautical words are framing only.
+3. Glob `~/.ships/crew/*/persona.md` and Read the existing crew's persona files first so the new voice stands apart — no two crewmates should sound alike. **No pirate-speak** — every crewmate talks like a real modern colleague; the nautical words are framing only.
 
 4. Ask the Captain to **name** the new crewmate (plain text).
 
