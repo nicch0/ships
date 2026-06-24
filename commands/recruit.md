@@ -5,8 +5,6 @@ argument-hint: [what you need them for]
 
 Run the **recruit** ritual — add a crewmate to the ship. The Captain's note on what they need: `$ARGUMENTS`
 
-Ships keeps a **standing crew** — One Piece rules, loyalty over mercenaries. You recruit because you've felt the gap, not to grind a number. There are no rank gates.
-
 **Use the Read and Glob tools to inspect state — don't shell out to bash for reading files.**
 
 1. If `~/.ships` doesn't exist, tell the Captain to run `/ships:onboard` first and stop.

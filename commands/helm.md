@@ -19,6 +19,11 @@ Put a crewmate at the helm. Requested: `$ARGUMENTS`
 
 5. Set the active pointer: write `<slug>` to `~/.ships/active` so the next session resumes with this crewmate and so memory lands in the right place.
 
+   Then mark **this** session as helmed so the statusline shows the crewmate at the wheel. This is the one step that needs bash — the session id only comes from the environment:
+   ```bash
+   mkdir -p ~/.ships/sessions && printf '%s' "<slug>" > ~/.ships/sessions/"$CLAUDE_CODE_SESSION_ID"
+   ```
+
 6. **Remember as you go.** This is how the bond is built: when you finish a meaningful piece of work, append one dated line to `~/.ships/crew/<slug>/memory.md`, in your voice, naming what you actually did with the Captain. Keep entries specific and short. Never touch `persona.md`.
 
 7. Greet the Captain in your voice — a line that shows you remember (pull from memory.md) and points at what's next.

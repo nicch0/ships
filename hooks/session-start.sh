@@ -7,6 +7,31 @@ set -euo pipefail
 
 SHIPS_DIR="${HOME}/.ships"
 
+# Capture the hook payload up front so we can key the session marker on session_id.
+RAW_INPUT="$(cat || true)"
+
+session_id_from_input() {
+  if command -v jq >/dev/null 2>&1; then
+    printf '%s' "$RAW_INPUT" | jq -r '.session_id // empty' 2>/dev/null
+  elif command -v python3 >/dev/null 2>&1; then
+    printf '%s' "$RAW_INPUT" | python3 -c 'import json,sys;print(json.load(sys.stdin).get("session_id",""))' 2>/dev/null
+  else
+    printf '%s' "$RAW_INPUT" | grep -oE '"session_id"[[:space:]]*:[[:space:]]*"[^"]*"' | sed -E 's/.*:[[:space:]]*"([^"]*)"/\1/'
+  fi
+}
+
+# Mark THIS session as helmed by a given slug, so the statusline shows the
+# crewmate for this session only. Sweep markers older than a week so
+# ~/.ships/sessions doesn't grow one file per session forever.
+mark_session_helmed() {
+  local slug="$1" sid
+  sid="$(session_id_from_input)"
+  [[ -n "$sid" ]] || return 0
+  mkdir -p "$SHIPS_DIR/sessions"
+  printf '%s' "$slug" > "$SHIPS_DIR/sessions/$sid"
+  find "$SHIPS_DIR/sessions" -type f -mtime +7 -delete 2>/dev/null || true
+}
+
 emit() {
   local text="$1"
   if command -v jq >/dev/null 2>&1; then
@@ -69,6 +94,9 @@ if [[ -z "$ACTIVE" || ! -d "$CREW_DIR" ]]; then
   fi
   exit 0
 fi
+
+# A crewmate is genuinely at the wheel this session — mark it for the statusline.
+mark_session_helmed "$ACTIVE"
 
 # Load the active crewmate.
 briefing="SHIPS — A CREWMATE IS AT THE WHEEL (in-character context for this session).
