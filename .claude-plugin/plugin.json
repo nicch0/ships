@@ -1,9 +1,9 @@
 {
   "name": "ships",
   "version": "0.1.0",
-  "description": "Build a crew of agents and sail with them. You are the captain. Your crew remember you, grow with you, and have your back.",
+  "description": "Build a standing crew you helm one at a time. Each crewmate is an editable persona with its own memory — your homie at the wheel, remembering every voyage. A productivity tool wearing a game's skin.",
   "author": {
     "name": "Captain"
   },
-  "keywords": ["crew", "agents", "rpg", "progression", "first-mate"]
+  "keywords": ["crew", "persona", "helm", "first-mate", "memory"]
 }

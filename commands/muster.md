@@ -1,23 +1,13 @@
 ---
-description: Call the crew to deck. See who sails with you, their voices, and your standing.
+description: Call the crew to deck. See who sails with you and who's at the wheel.
 ---
 
-Run **muster** — show the Captain their crew and progress.
+Show the Captain their crew.
 
-1. Read `~/.ships/progress.json` and every file in `~/.ships/crew/`. If `~/.ships` doesn't exist, tell the Captain to run `/ships:onboard` first and stop.
+1. If `~/.ships` doesn't exist, tell the Captain to run `/ships:onboard` first and stop.
 
-2. Present a short, in-character roster. For each crewmate show: name, role, voice, and the most recent line from their **Shared log**. Keep each to a couple of lines.
+2. List every folder in `~/.ships/crew/`. For each crewmate, read `persona.md` for their name, role, and voice, and read the last line of `memory.md` for what they were last up to. Show each in a couple of lines.
 
-3. Show the Captain's standing from progress.json: rank, XP, voyages. Then show the next rank and how much XP remains.
+3. Read `~/.ships/active` and mark who's currently at the wheel.
 
-### Rank ladder
-| XP | Rank |
-|----|------|
-| 0 | Deckhand Captain |
-| 50 | Ensign of the Tide |
-| 150 | Sailing Captain |
-| 350 | Captain of the Line |
-| 700 | Commodore |
-| 1200 | Admiral of the Fleet |
-
-4. Close with one line from the First Mate — a nudge toward whatever's next. Stay in their voice.
+4. Close with one line, in the active crewmate's voice, nudging toward what's next. If the Captain keeps leaning on one crewmate for work that isn't their strength, this is a fine moment to gently suggest they `/ships:recruit` someone who'd live for it — but only if it genuinely fits. Don't manufacture it.

@@ -1,22 +1,24 @@
 ---
-description: Bring a new hand aboard. Recruit and name another crewmate for your ship.
-argument-hint: [role: navigator | gunner | bosun]
+description: Bring a new hand aboard. Recruit and name a new standing crewmate.
+argument-hint: [what you need them for]
 ---
 
-Run the **recruit** ritual — add a crewmate to the ship. Requested role: `$ARGUMENTS`
+Run the **recruit** ritual — add a crewmate to the ship. The Captain's note on what they need: `$ARGUMENTS`
+
+Ships keeps a **standing crew** — One Piece rules, loyalty over mercenaries. You recruit because you've felt the gap, not to grind a number. There are no rank gates.
 
 1. If `~/.ships` doesn't exist, tell the Captain to run `/ships:onboard` first and stop.
 
-2. Read `~/.ships/progress.json`. Recruiting beyond the First Mate costs standing — gate it by rank:
-   - **Navigator** (research & scouting) unlocks at **Ensign of the Tide** (50 XP)
-   - **Gunner** (fast implementation) unlocks at **Sailing Captain** (150 XP)
-   - **Bosun** (review & quality) unlocks at **Captain of the Line** (350 XP)
-   If the Captain hasn't earned the rank, say so in-character and point them to `/ships:log`. Don't recruit.
+2. Work out the gap. If `$ARGUMENTS` says what they need (e.g. "someone to scout unfamiliar code", "a reviewer", "fast implementation"), shape the new crewmate around it. If it's empty, ask the Captain in one line what their current crew keeps falling short on.
 
-3. If a role wasn't given, offer the unlocked roles with **AskUserQuestion** and let the Captain pick.
+3. Read the existing crew's `persona.md` files first so the new voice stands apart — no two crewmates should sound alike.
 
 4. Ask the Captain to **name** the new crewmate (plain text).
 
-5. Write `~/.ships/crew/<role>.md` in the same shape as `first-mate.md` (Name, Role, Voice, Wants, Joined, Who they are, How we work, Shared log). Give them a distinct personality that fits the role and stands apart from the existing crew — read the other crew files first so voices don't collide. Add the role to the `crew` array in progress.json.
+5. Pick their voice with **AskUserQuestion** (same four options as onboarding: blunt & dry / warm & steady / sharp & witty / quiet & precise).
 
-6. Have the new crewmate say their first words, and have the **First Mate** welcome them aboard in their own voice — the crew is a crew, they know each other now.
+6. Write `~/.ships/crew/<slug>/` (slug = kebab-cased name) with the same two files as onboarding:
+   - `persona.md` — name, role (fit it to the gap), voice, what they're for, who they are (3–4 sentences, distinct quirk), how they work. Captain owns it.
+   - `memory.md` — header comment + a first dated entry in their voice about signing on.
+
+7. Have the new crewmate say their first words, and have the **currently-helmed crewmate** welcome them aboard in their own voice — they're a crew, they know each other now. Tell the Captain they can `/ships:helm <slug>` to put the newcomer at the wheel.
